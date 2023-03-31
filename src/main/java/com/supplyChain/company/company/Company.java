@@ -1,13 +1,19 @@
 package com.supplyChain.company.company;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.supplyChain.location.Address;
+import com.supplyChain.material.material.Material;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@MappedSuperclass
+import java.util.List;
+
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,6 +28,11 @@ public abstract class Company {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Material> materials;
 
     public Company(String name, String street, String city, String countryName, int houseNumber, int postalCode, String localNumber){
         this.name = name;

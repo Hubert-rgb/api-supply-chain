@@ -1,5 +1,6 @@
 package com.supplyChain.orders.manufactureOrder;
 
+import com.supplyChain.company.manufactureCompany.ManufactureCompany;
 import com.supplyChain.material.materialType.MaterialType;
 import com.supplyChain.orders.order.Order;
 import com.supplyChain.users.manufacturer.Manufacturer;
@@ -32,4 +33,8 @@ public class ManufactureOrder extends Order {
     @MapKeyColumn(name = "material_id")
     @Column(name = "quantity")
     private HashMap<MaterialType, Integer> materialQuantityMap;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacture_company_id")
+    private ManufactureCompany manufactureCompany;
 }

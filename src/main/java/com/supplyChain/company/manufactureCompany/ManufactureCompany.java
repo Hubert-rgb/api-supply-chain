@@ -21,6 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ManufactureCompany extends Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @OneToMany(mappedBy = "manufactureCompany", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ProductType> manufactureProductTypes;
 
@@ -39,5 +44,6 @@ public class ManufactureCompany extends Company {
     @OneToMany(mappedBy = "manufactureCompany", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Manufacturer> workers;
 
+    @OneToMany(mappedBy = "")
     private List<ManufactureOrder> ordersToManufacture;
 }

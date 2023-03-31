@@ -19,6 +19,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DistributionCompany extends Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @ElementCollection
     @CollectionTable(name = "products_in_stock_of_distribution_company",
             joinColumns = {@JoinColumn(name = "distribution_company_id", referencedColumnName = "id")})

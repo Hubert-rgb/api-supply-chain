@@ -19,8 +19,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SupplierCompany extends Company {
-    @OneToMany(mappedBy = "supplierCompany", cascade = jakarta.persistence.CascadeType.PERSIST, orphanRemoval = true)
-    private List<MaterialType> supplierProducts;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    /*@OneToMany(mappedBy = "supplierCompany", cascade = jakarta.persistence.CascadeType.PERSIST, orphanRemoval = true)
+    private List<MaterialType> supplierProducts*/;
 
     @ElementCollection
     @CollectionTable(name = "materials_in_stock_of_supplier_company",

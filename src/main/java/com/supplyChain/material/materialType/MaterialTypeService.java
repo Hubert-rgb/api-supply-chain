@@ -19,4 +19,8 @@ public class MaterialTypeService {
     public MaterialType saveMaterialType(MaterialType materialType){
         return repository.save(materialType);
     }
+
+    public List<MaterialType> getMaterialTypesBySupplierCompanyId(long supplierCompanyId){
+        return repository.findBySupplierCompany_Id(supplierCompanyId);
+    }
 }
