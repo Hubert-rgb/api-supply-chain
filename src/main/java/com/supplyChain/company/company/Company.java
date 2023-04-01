@@ -25,14 +25,10 @@ public abstract class Company {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Material> materials;
 
     public Company(String name, String street, String city, String countryName, int houseNumber, int postalCode, String localNumber){
         this.name = name;

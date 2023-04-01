@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table
@@ -31,7 +32,7 @@ public class SupplierCompany extends Company {
     @CollectionTable(name = "materials_in_stock_of_supplier_company",
             joinColumns = {@JoinColumn(name = "supplier_company_id", referencedColumnName = "id")})
     @Column(name = "quantity")
-    private HashMap<MaterialType, Integer> materialsInStock;
+    private Map<Integer, Integer> materialsInStock;
 
     @OneToMany(mappedBy = "supplierCompany", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Supplier> workers;

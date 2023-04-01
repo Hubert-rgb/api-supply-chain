@@ -1,5 +1,6 @@
 package com.supplyChain.company.distributionCompany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.supplyChain.company.company.Company;
 import com.supplyChain.product.productType.ProductType;
 import com.supplyChain.users.distributor.Distributor;
@@ -9,8 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table
@@ -25,11 +28,14 @@ public class DistributionCompany extends Company {
     private Long id;
 
     @ElementCollection
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @CollectionTable(name = "products_in_stock_of_distribution_company",
             joinColumns = {@JoinColumn(name = "distribution_company_id", referencedColumnName = "id")})
     @Column(name = "quantity")
-    private HashMap<ProductType, Integer> productsInStock;
+    private Map<Integer, Integer> productsInStock = new HashMap<>();
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(mappedBy = "distributionCompany", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Distributor> workers;
+    private List<Distributor> workers = new ArrayList<>();
+
 }

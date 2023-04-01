@@ -13,6 +13,7 @@ import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table
@@ -31,19 +32,19 @@ public class ManufactureCompany extends Company {
 
     @ElementCollection
     @CollectionTable(name = "products_in_stock_of_manufacture_company",
-            joinColumns = {@JoinColumn(name = "manufacture_company_id", referencedColumnName = "id")})
+            joinColumns = @JoinColumn(name = "manufacture_company_id", referencedColumnName = "id"))
     @Column(name = "quantity")
-    private HashMap<ProductType, Integer> productsInStock;
+    private Map<Integer, Integer> productsInStock;
 
     @ElementCollection
     @CollectionTable(name = "materials_in_stock_of_manufacture_company",
             joinColumns = {@JoinColumn(name = "manufacture_company_id", referencedColumnName = "id")})
     @Column(name = "quantity")
-    private HashMap<MaterialType, Integer> materialsInStock;
+    private Map<Integer, Integer> materialsInStock;
 
     @OneToMany(mappedBy = "manufactureCompany", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Manufacturer> workers;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "manufactureCompany")
     private List<ManufactureOrder> ordersToManufacture;
 }
