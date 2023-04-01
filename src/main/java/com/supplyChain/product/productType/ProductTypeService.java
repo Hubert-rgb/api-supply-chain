@@ -13,10 +13,14 @@ public class ProductTypeService {
     public ProductType getProductTypeById(long id){
         return repository.findById(id).orElse(null);
     }
-    public List<ProductType> getAllProducts(){
+    public List<ProductType> getAllProductTypes(){
         return repository.findAll();
     }
-    public ProductType saveProductType(ProductType productType){
-        return repository.save(productType);
+    public void saveProductType(ProductType productType){
+        repository.save(productType);
+    }
+
+    public List<ProductType> getByManufactureCompanyId(long manufactureCompanyId){
+        return repository.findByManufactureCompany_Id(manufactureCompanyId);
     }
 }
