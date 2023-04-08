@@ -14,6 +14,6 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
     @Query("select m from Material m where m.company.id = ?1")
     List<Material> findByCompany_Id(Long id);
 
-    @Query("select m from Material m where m.user.id = ?1")
+    @Query("select m from Material m where m.userEntity.id = ?1")
     List<Material> findByUser_Id(Long id);
 }

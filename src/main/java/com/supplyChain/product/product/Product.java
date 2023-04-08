@@ -2,7 +2,7 @@ package com.supplyChain.product.product;
 
 import com.supplyChain.company.company.Company;
 import com.supplyChain.product.productType.ProductType;
-import com.supplyChain.users.user.User;
+import com.supplyChain.users.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +23,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;

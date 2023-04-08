@@ -3,7 +3,7 @@ package com.supplyChain.material.material;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.supplyChain.company.company.Company;
 import com.supplyChain.material.materialType.MaterialType;
-import com.supplyChain.users.user.User;
+import com.supplyChain.users.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class Material {
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JoinColumn(name = "company_id")

@@ -13,16 +13,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public abstract class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
     private String name;
     @Enumerated
     private UserType type;
 
-    public User(String name, UserType type){
+    public UserEntity(String name, UserType type){
         this.name = name;
         this.type = type;
     }

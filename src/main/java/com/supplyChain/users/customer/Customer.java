@@ -1,11 +1,10 @@
 package com.supplyChain.users.customer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.supplyChain.location.Address;
 import com.supplyChain.orders.customerOrder.CustomerOrder;
 import com.supplyChain.enumClasses.type.UserType;
-import com.supplyChain.users.user.User;
+import com.supplyChain.users.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 //@PrimaryKeyJoinColumn()
-public class Customer extends User {
+public class Customer extends UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     /*@OneToMan
     private List<CustomerOrder> customerOrders;*/
